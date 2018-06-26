@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>NCEAS Data Team Training</title>
+  <meta name="description" content="This is a training guide and reference resource for NCEAS data team members working on the SASAP and Arctic Data Center projects">
+  <meta name="generator" content="bookdown 0.7.13 and GitBook 2.6.7">
+
+  <meta property="og:title" content="NCEAS Data Team Training" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is a training guide and reference resource for NCEAS data team members working on the SASAP and Arctic Data Center projects" />
+  <meta name="github-repo" content="rstudio/datateam-training" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="NCEAS Data Team Training" />
+  
+  <meta name="twitter:description" content="This is a training guide and reference resource for NCEAS data team members working on the SASAP and Arctic Data Center projects" />
+  
+
+<meta name="author" content="Jeanette Clark, Jesse Goldstein, Dominic Mullen, Bryce Mecum, Matt Jones, Peter Slaughter, Irene Steves, Mitchell Maier">
+
+
+<meta name="date" content="2018-06-26">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="create-data-packages-in-r.html">
+<link rel="next" href="explore-eml.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+<script src="libs/htmlwidgets-1.2/htmlwidgets.js"></script>
+<link href="libs/jsoneditor-5.5.5/jsoneditor.min.css" rel="stylesheet" />
+<script src="libs/jsoneditor-5.5.5/jsoneditor.min.js"></script>
+<script src="libs/jsonedit-binding-2.0.0/jsonedit.js"></script>
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="../styles.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Data Team Training</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome to NCEAS!</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#first-day-to-dos"><i class="fa fa-check"></i><b>1.1</b> First day to-dos</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#account-information"><i class="fa fa-check"></i><b>1.2</b> Account information</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#nceas-events"><i class="fa fa-check"></i><b>1.3</b> NCEAS Events</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="introduction-to-open-science.html"><a href="introduction-to-open-science.html"><i class="fa fa-check"></i><b>2</b> Introduction to open science</a><ul>
+<li class="chapter" data-level="2.1" data-path="introduction-to-open-science.html"><a href="introduction-to-open-science.html#open-science-background-reading"><i class="fa fa-check"></i><b>2.1</b> Open science background reading</a></li>
+<li class="chapter" data-level="2.2" data-path="introduction-to-open-science.html"><a href="introduction-to-open-science.html#effective-data-management"><i class="fa fa-check"></i><b>2.2</b> Effective data management</a></li>
+<li class="chapter" data-level="2.3" data-path="introduction-to-open-science.html"><a href="introduction-to-open-science.html#using-dataone"><i class="fa fa-check"></i><b>2.3</b> Using DataONE</a></li>
+<li class="chapter" data-level="2.4" data-path="introduction-to-open-science.html"><a href="introduction-to-open-science.html#working-on-a-remote-server"><i class="fa fa-check"></i><b>2.4</b> Working on a remote server</a></li>
+<li class="chapter" data-level="2.5" data-path="introduction-to-open-science.html"><a href="introduction-to-open-science.html#cyberduck-instructions"><i class="fa fa-check"></i><b>2.5</b> Cyberduck instructions</a></li>
+<li class="chapter" data-level="2.6" data-path="introduction-to-open-science.html"><a href="introduction-to-open-science.html#a-note-on-paths"><i class="fa fa-check"></i><b>2.6</b> A note on paths</a></li>
+<li class="chapter" data-level="2.7" data-path="introduction-to-open-science.html"><a href="introduction-to-open-science.html#a-note-on-scripts"><i class="fa fa-check"></i><b>2.7</b> A note on scripts</a></li>
+<li class="chapter" data-level="2.8" data-path="introduction-to-open-science.html"><a href="introduction-to-open-science.html#exercise-1"><i class="fa fa-check"></i><b>2.8</b> Exercise 1</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="create-data-packages-in-r.html"><a href="create-data-packages-in-r.html"><i class="fa fa-check"></i><b>3</b> Create data packages in R</a><ul>
+<li class="chapter" data-level="3.1" data-path="create-data-packages-in-r.html"><a href="create-data-packages-in-r.html#what-is-in-a-package"><i class="fa fa-check"></i><b>3.1</b> What is in a package?</a></li>
+<li class="chapter" data-level="3.2" data-path="create-data-packages-in-r.html"><a href="create-data-packages-in-r.html#about-identifiers"><i class="fa fa-check"></i><b>3.2</b> About identifiers</a></li>
+<li class="chapter" data-level="3.3" data-path="create-data-packages-in-r.html"><a href="create-data-packages-in-r.html#uploading-packages-using-r"><i class="fa fa-check"></i><b>3.3</b> Uploading packages using R</a></li>
+<li class="chapter" data-level="3.4" data-path="create-data-packages-in-r.html"><a href="create-data-packages-in-r.html#set-dataone-nodes"><i class="fa fa-check"></i><b>3.4</b> Set DataONE nodes</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="create-data-packages-in-r.html"><a href="create-data-packages-in-r.html#staging-test-nodes"><i class="fa fa-check"></i><b>3.4.1</b> Staging (Test) nodes</a></li>
+<li class="chapter" data-level="3.4.2" data-path="create-data-packages-in-r.html"><a href="create-data-packages-in-r.html#production-nodes"><i class="fa fa-check"></i><b>3.4.2</b> Production nodes</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="create-data-packages-in-r.html"><a href="create-data-packages-in-r.html#publish-an-object"><i class="fa fa-check"></i><b>3.5</b> Publish an object</a></li>
+<li class="chapter" data-level="3.6" data-path="create-data-packages-in-r.html"><a href="create-data-packages-in-r.html#create-a-resource-map"><i class="fa fa-check"></i><b>3.6</b> Create a resource map</a></li>
+<li class="chapter" data-level="3.7" data-path="create-data-packages-in-r.html"><a href="create-data-packages-in-r.html#exercise-2"><i class="fa fa-check"></i><b>3.7</b> Exercise 2</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="update-a-data-package.html"><a href="update-a-data-package.html"><i class="fa fa-check"></i><b>4</b> Update a data package</a><ul>
+<li class="chapter" data-level="4.1" data-path="update-a-data-package.html"><a href="update-a-data-package.html#get-package-and-eml"><i class="fa fa-check"></i><b>4.1</b> Get package and EML</a></li>
+<li class="chapter" data-level="4.2" data-path="update-a-data-package.html"><a href="update-a-data-package.html#update-an-object"><i class="fa fa-check"></i><b>4.2</b> Update an object</a></li>
+<li class="chapter" data-level="4.3" data-path="update-a-data-package.html"><a href="update-a-data-package.html#update-a-package"><i class="fa fa-check"></i><b>4.3</b> Update a package</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="update-a-data-package.html"><a href="update-a-data-package.html#updating-metadata"><i class="fa fa-check"></i><b>4.3.1</b> Updating metadata</a></li>
+<li class="chapter" data-level="4.3.2" data-path="update-a-data-package.html"><a href="update-a-data-package.html#updating-data"><i class="fa fa-check"></i><b>4.3.2</b> Updating data</a></li>
+<li class="chapter" data-level="4.3.3" data-path="update-a-data-package.html"><a href="update-a-data-package.html#publish-update"><i class="fa fa-check"></i><b>4.3.3</b> Publish update</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="update-a-data-package.html"><a href="update-a-data-package.html#exercise-3"><i class="fa fa-check"></i><b>4.4</b> Exercise 3</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="explore-eml.html"><a href="explore-eml.html"><i class="fa fa-check"></i><b>5</b> Explore EML</a><ul>
+<li class="chapter" data-level="5.1" data-path="explore-eml.html"><a href="explore-eml.html#navigate-through-eml"><i class="fa fa-check"></i><b>5.1</b> Navigate through EML</a></li>
+<li class="chapter" data-level="5.2" data-path="explore-eml.html"><a href="explore-eml.html#understand-the-eml-schema"><i class="fa fa-check"></i><b>5.2</b> Understand the EML schema</a></li>
+<li class="chapter" data-level="5.3" data-path="explore-eml.html"><a href="explore-eml.html#access-specific-elements"><i class="fa fa-check"></i><b>5.3</b> Access specific elements</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="editing-eml-in-r.html"><a href="editing-eml-in-r.html"><i class="fa fa-check"></i><b>6</b> Editing EML in R</a><ul>
+<li class="chapter" data-level="6.1" data-path="editing-eml-in-r.html"><a href="editing-eml-in-r.html#edit-an-eml-element"><i class="fa fa-check"></i><b>6.1</b> Edit an EML element</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="editing-eml-in-r.html"><a href="editing-eml-in-r.html#edit-eml-with-strings"><i class="fa fa-check"></i><b>6.1.1</b> Edit EML with strings</a></li>
+<li class="chapter" data-level="6.1.2" data-path="editing-eml-in-r.html"><a href="editing-eml-in-r.html#edit-eml-with-the-eml-package"><i class="fa fa-check"></i><b>6.1.2</b> Edit EML with the “EML” package</a></li>
+<li class="chapter" data-level="6.1.3" data-path="editing-eml-in-r.html"><a href="editing-eml-in-r.html#edit-eml-with-objects"><i class="fa fa-check"></i><b>6.1.3</b> Edit EML with objects</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="editing-eml-in-r.html"><a href="editing-eml-in-r.html#edit-attributelists"><i class="fa fa-check"></i><b>6.2</b> Edit attributeLists</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="editing-eml-in-r.html"><a href="editing-eml-in-r.html#edit-attributes"><i class="fa fa-check"></i><b>6.2.1</b> Edit Attributes</a></li>
+<li class="chapter" data-level="6.2.2" data-path="editing-eml-in-r.html"><a href="editing-eml-in-r.html#edit-custom-units"><i class="fa fa-check"></i><b>6.2.2</b> Edit Custom Units</a></li>
+<li class="chapter" data-level="6.2.3" data-path="editing-eml-in-r.html"><a href="editing-eml-in-r.html#edit-factors"><i class="fa fa-check"></i><b>6.2.3</b> Edit Factors</a></li>
+<li class="chapter" data-level="6.2.4" data-path="editing-eml-in-r.html"><a href="editing-eml-in-r.html#finalize-attributelist"><i class="fa fa-check"></i><b>6.2.4</b> Finalize attributeList</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="editing-eml-in-r.html"><a href="editing-eml-in-r.html#set-physical"><i class="fa fa-check"></i><b>6.3</b> Set physical</a></li>
+<li class="chapter" data-level="6.4" data-path="editing-eml-in-r.html"><a href="editing-eml-in-r.html#edit-datatables"><i class="fa fa-check"></i><b>6.4</b> Edit dataTables</a></li>
+<li class="chapter" data-level="6.5" data-path="editing-eml-in-r.html"><a href="editing-eml-in-r.html#edit-otherentities"><i class="fa fa-check"></i><b>6.5</b> Edit otherEntities</a><ul>
+<li class="chapter" data-level="6.5.1" data-path="editing-eml-in-r.html"><a href="editing-eml-in-r.html#remove-otherentities"><i class="fa fa-check"></i><b>6.5.1</b> Remove otherEntities</a></li>
+<li class="chapter" data-level="6.5.2" data-path="editing-eml-in-r.html"><a href="editing-eml-in-r.html#create-otherentities"><i class="fa fa-check"></i><b>6.5.2</b> Create otherEntities</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="editing-eml-in-r.html"><a href="editing-eml-in-r.html#set-coverages"><i class="fa fa-check"></i><b>6.6</b> Set coverages</a></li>
+<li class="chapter" data-level="6.7" data-path="editing-eml-in-r.html"><a href="editing-eml-in-r.html#set-methods"><i class="fa fa-check"></i><b>6.7</b> Set methods</a><ul>
+<li class="chapter" data-level="6.7.1" data-path="editing-eml-in-r.html"><a href="editing-eml-in-r.html#adding-sampling-info-to-methods-section"><i class="fa fa-check"></i><b>6.7.1</b> Adding sampling info to methods section</a></li>
+</ul></li>
+<li class="chapter" data-level="6.8" data-path="editing-eml-in-r.html"><a href="editing-eml-in-r.html#set-parties"><i class="fa fa-check"></i><b>6.8</b> Set parties</a></li>
+<li class="chapter" data-level="6.9" data-path="editing-eml-in-r.html"><a href="editing-eml-in-r.html#exercise-4"><i class="fa fa-check"></i><b>6.9</b> Exercise 4</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="system-metadata.html"><a href="system-metadata.html"><i class="fa fa-check"></i><b>7</b> System metadata</a><ul>
+<li class="chapter" data-level="7.1" data-path="system-metadata.html"><a href="system-metadata.html#edit-sysmeta"><i class="fa fa-check"></i><b>7.1</b> Edit sysmeta</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="system-metadata.html"><a href="system-metadata.html#identifiers-and-sysmeta"><i class="fa fa-check"></i><b>7.1.1</b> Identifiers and sysmeta</a></li>
+<li class="chapter" data-level="7.1.2" data-path="system-metadata.html"><a href="system-metadata.html#additional-resources"><i class="fa fa-check"></i><b>7.1.2</b> Additional resources</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="system-metadata.html"><a href="system-metadata.html#set-rights-and-access"><i class="fa fa-check"></i><b>7.2</b> Set rights and access</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="system-metadata.html"><a href="system-metadata.html#exercise-5"><i class="fa fa-check"></i><b>7.2.1</b> Exercise 5</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="using-git-in-rstudio.html"><a href="using-git-in-rstudio.html"><i class="fa fa-check"></i><b>8</b> Using Git in RStudio</a><ul>
+<li class="chapter" data-level="8.1" data-path="using-git-in-rstudio.html"><a href="using-git-in-rstudio.html#introduction"><i class="fa fa-check"></i><b>8.1</b> Introduction</a><ul>
+<li class="chapter" data-level="8.1.1" data-path="using-git-in-rstudio.html"><a href="using-git-in-rstudio.html#so-why-do-i-need-to-use-this-again"><i class="fa fa-check"></i><b>8.1.1</b> So why do I need to use this again?</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="using-git-in-rstudio.html"><a href="using-git-in-rstudio.html#setting-up-git"><i class="fa fa-check"></i><b>8.2</b> Setting up Git</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="using-git-in-rstudio.html"><a href="using-git-in-rstudio.html#cloning-the-arctic-data-repo"><i class="fa fa-check"></i><b>8.2.1</b> Cloning the arctic-data repo</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="using-git-in-rstudio.html"><a href="using-git-in-rstudio.html#working-with-the-repository"><i class="fa fa-check"></i><b>8.3</b> Working with the repository</a><ul>
+<li class="chapter" data-level="8.3.1" data-path="using-git-in-rstudio.html"><a href="using-git-in-rstudio.html#adding-a-new-script"><i class="fa fa-check"></i><b>8.3.1</b> Adding a new script</a></li>
+<li class="chapter" data-level="8.3.2" data-path="using-git-in-rstudio.html"><a href="using-git-in-rstudio.html#editing-a-script"><i class="fa fa-check"></i><b>8.3.2</b> Editing a script</a></li>
+<li class="chapter" data-level="8.3.3" data-path="using-git-in-rstudio.html"><a href="using-git-in-rstudio.html#where-do-i-commit"><i class="fa fa-check"></i><b>8.3.3</b> Where do I commit?</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="using-git-in-rstudio.html"><a href="using-git-in-rstudio.html#my-git-tab-disappeared"><i class="fa fa-check"></i><b>8.4</b> My Git tab disappeared</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="using-rt.html"><a href="using-rt.html"><i class="fa fa-check"></i><b>9</b> Using RT</a><ul>
+<li class="chapter" data-level="9.1" data-path="using-rt.html"><a href="using-rt.html#navigate-rt"><i class="fa fa-check"></i><b>9.1</b> Navigate RT</a><ul>
+<li class="chapter" data-level="9.1.1" data-path="using-rt.html"><a href="using-rt.html#front-page"><i class="fa fa-check"></i><b>9.1.1</b> Front page</a></li>
+<li class="chapter" data-level="9.1.2" data-path="using-rt.html"><a href="using-rt.html#all-tickets"><i class="fa fa-check"></i><b>9.1.2</b> All tickets</a></li>
+<li class="chapter" data-level="9.1.3" data-path="using-rt.html"><a href="using-rt.html#example-ticket"><i class="fa fa-check"></i><b>9.1.3</b> Example ticket</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="nesting-a-data-package.html"><a href="nesting-a-data-package.html"><i class="fa fa-check"></i><b>10</b> Nesting a data package</a><ul>
+<li class="chapter" data-level="10.1" data-path="nesting-a-data-package.html"><a href="nesting-a-data-package.html#introduction-1"><i class="fa fa-check"></i><b>10.1</b> Introduction</a></li>
+<li class="chapter" data-level="10.2" data-path="nesting-a-data-package.html"><a href="nesting-a-data-package.html#create-a-new-parent-package"><i class="fa fa-check"></i><b>10.2</b> Create a new parent package</a></li>
+<li class="chapter" data-level="10.3" data-path="nesting-a-data-package.html"><a href="nesting-a-data-package.html#add-childs-to-an-existing-parent"><i class="fa fa-check"></i><b>10.3</b> Add childs to an existing parent</a></li>
+<li class="chapter" data-level="10.4" data-path="nesting-a-data-package.html"><a href="nesting-a-data-package.html#example"><i class="fa fa-check"></i><b>10.4</b> Example</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="building-provenance.html"><a href="building-provenance.html"><i class="fa fa-check"></i><b>11</b> Building Provenance</a><ul>
+<li class="chapter" data-level="11.1" data-path="building-provenance.html"><a href="building-provenance.html#introduction-2"><i class="fa fa-check"></i><b>11.1</b> Introduction</a></li>
+<li class="chapter" data-level="11.2" data-path="building-provenance.html"><a href="building-provenance.html#the-prov-editor"><i class="fa fa-check"></i><b>11.2</b> The Prov Editor</a></li>
+<li class="chapter" data-level="11.3" data-path="building-provenance.html"><a href="building-provenance.html#understanding-resource-maps"><i class="fa fa-check"></i><b>11.3</b> Understanding resource maps</a></li>
+<li class="chapter" data-level="11.4" data-path="building-provenance.html"><a href="building-provenance.html#datapack"><i class="fa fa-check"></i><b>11.4</b> <code>datapack</code></a><ul>
+<li class="chapter" data-level="11.4.1" data-path="building-provenance.html"><a href="building-provenance.html#fixing-mistakes"><i class="fa fa-check"></i><b>11.4.1</b> Fixing mistakes</a></li>
+</ul></li>
+<li class="chapter" data-level="11.5" data-path="building-provenance.html"><a href="building-provenance.html#references"><i class="fa fa-check"></i><b>11.5</b> References</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://nceas.github.io/datateam-training/reference" target="blank">Reference Guide</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">NCEAS Data Team Training</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="update-a-data-package" class="section level1">
+<h1><span class="header-section-number">Chapter 4</span> Update a data package</h1>
+<p>This chapter will teach you how to edit an existing data package in R.</p>
+<div id="get-package-and-eml" class="section level2">
+<h2><span class="header-section-number">4.1</span> Get package and EML</h2>
+<p>To update a package, you must load it into your R environment. After <a href="create-data-packages-in-r.html#set-dataone-nodes">setting your node</a>, use the following commands to load the package:</p>
+<pre class="sourceCode r"><code class="sourceCode r">rm_pid &lt;-<span class="st"> &quot;your_resource_map_pid&quot;</span>
+
+pkg &lt;-<span class="st"> </span>arcticdatautils<span class="op">::</span><span class="kw">get_package</span>(mnT,
+                                    rm_pid,
+                                    <span class="dt">file_names =</span> <span class="ot">TRUE</span>)</code></pre>
+<p>After loading the package, you can also load the EML file into R using the following command:</p>
+<pre class="sourceCode r"><code class="sourceCode r">eml &lt;-<span class="st"> </span>EML<span class="op">::</span><span class="kw">read_eml</span>(dataone<span class="op">::</span><span class="kw">getObject</span>(mnT, pkg<span class="op">$</span>metadata))</code></pre>
+<div class="note">
+<p>
+<strong>Tip to always have the most recent resource map.</strong>
+</p>
+<p>
+When editing resource maps (or any object), you always want to be working with the most recent update. To ensure you have the most recent resource map, you can use the following commands:
+</p>
+<pre class="sourceCode r"><code class="sourceCode r">rm_pid_original &lt;-<span class="st"> &quot;your_original_resource_map_pid&quot;</span>
+all_rm_versions &lt;-<span class="st"> </span>arcticdatautils<span class="op">::</span><span class="kw">get_all_versions</span>(mnT, rm_pid_original)
+rm_pid &lt;-<span class="st"> </span>all_rm_versions[<span class="kw">length</span>(all_rm_versions)]
+print(rm_pid)</code></pre>
+</div>
+</div>
+<div id="update-an-object" class="section level2">
+<h2><span class="header-section-number">4.2</span> Update an object</h2>
+<p>The <code>arcticdatautils::update_object</code> function updates a data object but does not change the resource map or EML. To simultaneously update all three parts of a data package, you can use the <code>datamgmt::update_package_object</code>.</p>
+<p>The <a href="https://nceas.github.io/datamgmt/reference/update_package_object.html"><code>update_package_object</code></a> function updates a data object, and then automatically updates the package resource map with the new data <code>PID</code>. If an object already has a <code>dataTable</code> or <code>otherEntity</code> with a working <code>physical</code> section, the EML will be updated with the new data object’s <code>physical</code>.</p>
+<p>To use, input the following arguments:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">update_package_object</span>(mnT,
+                      <span class="dt">data_pid =</span> <span class="st">&quot;the data PID you need to update&quot;</span>, <span class="co"># pkg$data</span>
+                      <span class="dt">new_data_path =</span> <span class="st">&quot;path/to/the/new/data.csv&quot;</span>,
+                      <span class="dt">resource_map_pid =</span> <span class="st">&quot;resource map of the data package&quot;</span>, <span class="co"># pkg$resource_map</span>
+                      <span class="dt">format_id =</span> <span class="st">&quot;the formatId&quot;</span>, <span class="co"># use line 2 (Id:) from https://cn.dataone.org/cn/v2/formats</span>
+                      <span class="dt">public =</span> <span class="ot">FALSE</span>,
+                      <span class="dt">use_doi =</span> <span class="ot">FALSE</span>,
+                      ...) <span class="co">#any other arguments to pass to publish_update (child_pids, etc)</span></code></pre>
+<p>To try it out for yourself, you can run this code to create a dummy package on <a href="https://test.arctic.io">test.arctic.io</a> and update one of its objects.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co">#input token to run</span>
+cnT &lt;-<span class="st"> </span>dataone<span class="op">::</span><span class="kw">CNode</span>(<span class="st">&#39;STAGING&#39;</span>)
+mnT &lt;-<span class="st"> </span>dataone<span class="op">::</span><span class="kw">getMNode</span>(cnT,<span class="st">&#39;urn:node:mnTestARCTIC&#39;</span>)
+
+pkg &lt;-<span class="st"> </span><span class="kw">create_dummy_package2</span>(mnT, <span class="dt">title =</span> <span class="st">&quot;My package&quot;</span>)
+
+<span class="kw">file.create</span>(<span class="st">&quot;new_file.csv&quot;</span>)
+<span class="kw">update_package_object</span>(mnT, pkg<span class="op">$</span>data[<span class="dv">1</span>], <span class="st">&quot;new_file.csv&quot;</span>, pkg<span class="op">$</span>resource_map, <span class="dt">format_id =</span> <span class="st">&quot;text/csv&quot;</span>)
+<span class="kw">file.remove</span>(<span class="st">&quot;new_file.csv&quot;</span>) <span class="co">#clean up</span>
+
+<span class="co">#check out the package on test.arcticdata.io</span></code></pre>
+<div class="note">
+<p>
+You will need to be explicit about your <code>format_id</code> here based on the file type. A list of format IDs can be found <a href="https://cn.dataone.org/cn/v2/formats">here</a> on the DataONE website. Use line 2 (Id:) exactly, character for character.
+</p>
+</div>
+</div>
+<div id="update-a-package" class="section level2">
+<h2><span class="header-section-number">4.3</span> Update a package</h2>
+<p>To update a package, use <code>arcticdatautils::publish_update</code>. This function has an argument for adding data <code>PID</code>s (or otherwise including existing data <code>PID</code>s to make sure that they stay with the package). This function allows you to add or remove data objects, and/or make metadata edits.</p>
+<p>First make sure you have the package you want to update, <a href="update-a-data-package.html#get-package-and-eml">loaded into R</a>.</p>
+<div id="updating-metadata" class="section level3">
+<h3><span class="header-section-number">4.3.1</span> Updating metadata</h3>
+<p>If you need to make edits to the metadata, do so. Then write the <code>EML</code> metadata to a file.</p>
+<pre class="sourceCode r"><code class="sourceCode r">eml_path &lt;-<span class="st"> &quot;path/to/metadata/science_metadata.xml&quot;</span>
+<span class="kw">write_eml</span>(eml, eml_path)</code></pre>
+<p>Next verify the eml is valid.</p>
+<pre class="sourceCode r"><code class="sourceCode r">EML<span class="op">::</span><span class="kw">eml_validate</span>(eml_path)</code></pre>
+<p>The above should return <code>TRUE</code> if the <code>EML</code> is valid. If it returns <code>FALSE</code>, fix the EML file, use <code>write_eml()</code> to save the fixed file, and retry.</p>
+</div>
+<div id="updating-data" class="section level3">
+<h3><span class="header-section-number">4.3.2</span> Updating data</h3>
+<p>If you need to make edits to the data, <a href="update-a-data-package.html#update-an-object">do so</a>.</p>
+</div>
+<div id="publish-update" class="section level3">
+<h3><span class="header-section-number">4.3.3</span> Publish update</h3>
+<p>Finally, update your data package at the <code>Member Node</code>.</p>
+<pre class="sourceCode r"><code class="sourceCode r">update &lt;-<span class="st"> </span>arcticdatautils<span class="op">::</span><span class="kw">publish_update</span>(mnT, 
+                                          <span class="dt">metadata_pid =</span> pkg<span class="op">$</span>metadata,
+                                          <span class="dt">resource_map_pid =</span>pkg<span class="op">$</span>resource_map,
+                                          <span class="dt">data_pids =</span> pkg<span class="op">$</span>data,
+                                          <span class="dt">child_pids =</span> <span class="ot">NULL</span>,
+                                          <span class="dt">use_doi =</span> <span class="ot">FALSE</span>, 
+                                          <span class="dt">metadata_path =</span> eml_path, 
+                                          <span class="dt">public =</span> <span class="ot">FALSE</span>,
+                                          <span class="dt">check_first =</span> <span class="ot">TRUE</span>)</code></pre>
+<p>Refresh the landing page at test.arcticdata.io/#view/… for this package and then follow the “newer version” link to view the latest.</p>
+<p>If a package is ready to be public, you can change the <code>public</code> argument in the <code>publish_update</code> call to <code>TRUE</code>.</p>
+<p>If you want to publish with a DOI (Digital Object Identifier) instead of a UUID (Universally Unique Identifier), you can change the <code>use_doi</code> argument to <code>TRUE</code>. <strong>This should only be done after the package is finalized and has been thoroughly reviewed!</strong></p>
+<p>If the package has children change <code>child_pids</code> to <code>pkg$child_packages</code>.</p>
+</div>
+</div>
+<div id="exercise-3" class="section level2 exercise">
+<h2><span class="header-section-number">4.4</span> Exercise 3</h2>
+<ul>
+<li>Locate the data package you published in the <a href="create-data-packages-in-r.html#exercise-2">previous exercise</a> by navigating to the URL test.arcticdata.io/#view/…</li>
+<li>Load the package and EML into R using the above commands.</li>
+<li>Load the data file associated with the package into R as a <code>data.frame</code>. (Hint: use <code>read.csv()</code> to upload the data file from your computer/the server.)</li>
+<li>Make an edit to the data in R (e.g. change one of the colnames to <code>&quot;TEST&quot;</code>).</li>
+<li>Save the edited data. (Hint: use <code>write.csv(data, row.names = FALSE)</code>.)</li>
+<li>Update the data file in the package with the edited data file using the above commands.</li>
+<li>Update your package using the above commands.</li>
+</ul>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="create-data-packages-in-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="explore-eml.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
